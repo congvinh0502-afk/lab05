@@ -4,7 +4,6 @@ import hust.soict.dsai.aims.store.Store;
 import hust.soict.dsai.aims.media.Media;
 import javax.swing.*;
 import java.awt.*;
-
 public class StoreScreen extends JFrame {
 
     private Store store;
@@ -44,6 +43,11 @@ public class StoreScreen extends JFrame {
 
         setJMenuBar(menuBar);
 
+        StoreScreenHeader header =
+        new StoreScreenHeader();
+
+        add(header, BorderLayout.NORTH);
+
         // Center
         JPanel center = new JPanel();
 
@@ -57,7 +61,10 @@ public class StoreScreen extends JFrame {
         center.add(mediaStore);
 }
 
-        add(center, BorderLayout.CENTER);
+        JScrollPane scrollPane =
+        new JScrollPane(center);
+
+        add(scrollPane, BorderLayout.CENTER);
 
         setVisible(true);
     }

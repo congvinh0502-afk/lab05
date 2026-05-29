@@ -38,7 +38,15 @@ public class MediaStore extends JPanel {
         JPanel container = new JPanel();
 
         JButton addToCartButton =
-                new JButton("Add to cart");
+        new JButton("Add to cart");
+
+        addToCartButton.addActionListener(e -> {
+
+        JOptionPane.showMessageDialog(
+            null,
+            media.getTitle() + " added to cart"
+    );
+});
 
         container.add(addToCartButton);
 
@@ -46,7 +54,15 @@ public class MediaStore extends JPanel {
         if (media instanceof Playable) {
 
             JButton playButton =
-                    new JButton("Play");
+        new JButton("Play");
+
+playButton.addActionListener(e -> {
+
+    JOptionPane.showMessageDialog(
+            null,
+            "Playing " + media.getTitle()
+    );
+});
 
             container.add(playButton);
         }
