@@ -1,7 +1,7 @@
 package hust.soict.dsai.aims.screen;
 
 import hust.soict.dsai.aims.store.Store;
-
+import hust.soict.dsai.aims.media.Media;
 import javax.swing.*;
 import java.awt.*;
 
@@ -45,11 +45,19 @@ public class StoreScreen extends JFrame {
         setJMenuBar(menuBar);
 
         // Center
-        JLabel label = new JLabel("AIMS Store", SwingConstants.CENTER);
+        JPanel center = new JPanel();
 
-        label.setFont(new Font("Arial", Font.BOLD, 30));
+        center.setLayout(new GridLayout(0, 3, 20, 20));
 
-        add(label, BorderLayout.CENTER);
+        for (Media media : store.getItemsInStore()) {
+
+        MediaStore mediaStore =
+            new MediaStore(media);
+
+        center.add(mediaStore);
+}
+
+        add(center, BorderLayout.CENTER);
 
         setVisible(true);
     }
