@@ -4,13 +4,13 @@ import hust.soict.dsai.aims.media.Book;
 import hust.soict.dsai.aims.media.DigitalVideoDisc;
 import hust.soict.dsai.aims.screen.StoreScreen;
 import hust.soict.dsai.aims.store.Store;
-
+import hust.soict.dsai.aims.cart.Cart;
 public class Aims {
 
     public static void main(String[] args) {
 
         Store store = new Store();
-
+        Cart cart = new Cart();
         DigitalVideoDisc dvd1 =
                 new DigitalVideoDisc(
                         "Batman",
@@ -41,6 +41,6 @@ public class Aims {
         store.addMedia(dvd2);
         store.addMedia(book1);
 
-        new StoreScreen(store);
+        new StoreScreen(store, cart);
     }
 }

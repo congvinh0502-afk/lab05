@@ -1,16 +1,19 @@
 package hust.soict.dsai.aims.screen;
 
 import hust.soict.dsai.aims.store.Store;
+import hust.soict.dsai.aims.cart.Cart;
 import hust.soict.dsai.aims.media.Media;
 import javax.swing.*;
 import java.awt.*;
 public class StoreScreen extends JFrame {
 
     private Store store;
+    private Cart cart;
 
-    public StoreScreen(Store store) {
+    public StoreScreen(Store store, Cart cart) {
 
         this.store = store;
+        this.cart = cart;
 
         setTitle("AIMS Store");
 
@@ -44,7 +47,7 @@ public class StoreScreen extends JFrame {
         setJMenuBar(menuBar);
 
         StoreScreenHeader header =
-        new StoreScreenHeader();
+        new StoreScreenHeader(cart);
 
         add(header, BorderLayout.NORTH);
 
@@ -56,7 +59,7 @@ public class StoreScreen extends JFrame {
         for (Media media : store.getItemsInStore()) {
 
         MediaStore mediaStore =
-            new MediaStore(media);
+            new  MediaStore(media, cart);
 
         center.add(mediaStore);
 }

@@ -1,12 +1,15 @@
 package hust.soict.dsai.aims.screen;
 
 import javax.swing.*;
+
+import hust.soict.dsai.aims.cart.Cart;
+
 import java.awt.*;
 
 public class StoreScreenHeader extends JPanel {
-
-    public StoreScreenHeader() {
-
+    private Cart cart;
+    public StoreScreenHeader(Cart cart) {
+        this.cart = cart ;
         setLayout(new BorderLayout());
 
         // Title
@@ -18,6 +21,10 @@ public class StoreScreenHeader extends JPanel {
 
         // Cart button
         JButton cartButton = new JButton("View Cart");
+        cartButton.addActionListener(e -> {
+
+            new CartScreen(cart);
+        });
 
         JPanel rightPanel = new JPanel();
 
