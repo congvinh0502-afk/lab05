@@ -2,14 +2,15 @@ package hust.soict.dsai.aims.cart;
 
 import hust.soict.dsai.aims.exception.LimitExceededException;
 import hust.soict.dsai.aims.media.Media;
-import java.util.ArrayList;
+import javafx.collections.FXCollections;
+import javafx.collections.ObservableList;
 
 public class Cart {
 
     public static final int MAX_NUMBERS_ORDERED = 20;
 
-    private ArrayList<Media> itemsOrdered =
-        new ArrayList<Media>();
+    private ObservableList<Media> itemsOrdered =
+        FXCollections.observableArrayList();
 
     public void addMedia(Media media) throws LimitExceededException {
 
@@ -115,7 +116,7 @@ public class Cart {
         System.out.println("Not found");
     }
 }
-public ArrayList<Media> getItemsOrdered() {
+public ObservableList<Media> getItemsOrdered() {
     return itemsOrdered;
 }
 

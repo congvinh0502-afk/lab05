@@ -11,9 +11,13 @@ public class CartTest {
         DigitalVideoDisc dvd3 = new DigitalVideoDisc("Aladin", "Animation", "John Musker", 90, 18.99f);
 
         // Add
-        cart.addMedia(dvd1);
-        cart.addMedia(dvd2);
-        cart.addMedia(dvd3);
+        try {
+            cart.addMedia(dvd1);
+            cart.addMedia(dvd2);
+            cart.addMedia(dvd3);
+        } catch (Exception e) {
+            System.out.println(e.getMessage());
+        }
 
         // Print
         cart.printCart();
