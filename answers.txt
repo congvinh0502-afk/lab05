@@ -1,0 +1,56 @@
+Section 1.3 - Compare Swing and AWT elements
+=============================================
+
+Question 1: The top-level containers in Swing and AWT
+------------------------------------------------------
+AWT:
+  - Frame  : the main application window (top-level container)
+  - Dialog : secondary pop-up window
+  - Applet : display area inside a browser window
+
+Swing:
+  - JFrame  : the main application window (top-level container)
+  - JDialog : secondary pop-up window
+  - JApplet : display area inside a browser window
+
+Key difference:
+  In AWT the application class inherits directly from Frame and components
+  are added straight onto the Frame object.
+  In Swing the application class inherits from JFrame. Because Swing
+  components (JComponents) are "lightweight", they must NOT be added
+  directly to the JFrame — they must be added to the JFrame's content
+  pane (a java.awt.Container obtained via getContentPane()).
+
+Question 2: Class names of AWT components and their Swing counterparts
+----------------------------------------------------------------------
+  AWT             | Swing
+  ----------------+-----------------
+  Frame           | JFrame
+  Dialog          | JDialog
+  Applet          | JApplet
+  Panel           | JPanel
+  Label           | JLabel
+  Button          | JButton
+  TextField       | JTextField
+  TextArea        | JTextArea
+  Checkbox        | JCheckBox
+  CheckboxGroup   | ButtonGroup
+  List            | JList
+  Choice          | JComboBox
+  Scrollbar       | JScrollBar
+  ScrollPane      | JScrollPane
+  Menu            | JMenu
+  MenuItem        | JMenuItem
+  MenuBar         | JMenuBar
+
+Summary of main differences
+----------------------------
+1. Naming convention : Swing classes are prefixed with "J" (e.g. JButton, JLabel).
+2. Component hierarchy : AWT components ("heavyweight") are backed by the
+   native OS widget; Swing components ("lightweight") are drawn entirely
+   by Java on a blank canvas, giving them consistent look-and-feel across
+   platforms.
+3. Content pane : In Swing, components must be added to the content pane of
+   the top-level container, not to the container itself.
+4. Richer API : Swing provides far more built-in components and a pluggable
+   look-and-feel (LookAndFeel) system not available in AWT.
