@@ -1,24 +1,37 @@
 package hust.soict.dsai.aims.cart;
 
+import hust.soict.dsai.aims.exception.LimitExceededException;
 import hust.soict.dsai.aims.media.Media;
 import java.util.ArrayList;
+
 public class Cart {
+
+    public static final int MAX_NUMBERS_ORDERED = 20;
+
     private ArrayList<Media> itemsOrdered =
         new ArrayList<Media>();
 
-    public void addMedia(Media media) {
+    public void addMedia(Media media) throws LimitExceededException {
 
-    if (!itemsOrdered.contains(media)) {
+        if (itemsOrdered.size() >= MAX_NUMBERS_ORDERED) {
 
-        itemsOrdered.add(media);
+            throw new LimitExceededException(
+                "ERROR: The number of media has reached its limit of "
+                + MAX_NUMBERS_ORDERED
+            );
+        }
 
-        System.out.println("The media has been added");
+        if (!itemsOrdered.contains(media)) {
 
-    } else {
+            itemsOrdered.add(media);
 
-        System.out.println("The media already exists");
+            System.out.println("The media has been added");
+
+        } else {
+
+            System.out.println("The media already exists");
+        }
     }
-}
     
 
    public void removeMedia(Media media) {

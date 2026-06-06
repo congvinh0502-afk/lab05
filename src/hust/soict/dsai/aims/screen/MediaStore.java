@@ -1,6 +1,7 @@
 package hust.soict.dsai.aims.screen;
 
 import hust.soict.dsai.aims.cart.Cart;
+import hust.soict.dsai.aims.exception.LimitExceededException;
 import hust.soict.dsai.aims.media.Media;
 import hust.soict.dsai.aims.media.Playable;
 import javax.swing.*;
@@ -44,33 +45,62 @@ public class MediaStore extends JPanel {
 
         addToCartButton.addActionListener(e -> {
 
-    cart.addMedia(media);
+    try {
 
-    JOptionPane.showMessageDialog(
-            null,
-            media.getTitle() + " added to cart"
-    );
+        cart.addMedia(media);
+
+        JOptionPane.showMessageDialog(
+                null,
+                media.getTitle() + " added to cart"
+        );
+
+    } catch (LimitExceededException ex) {
+
+        JOptionPane.showMessageDialog(
+                null,
+                ex.getMessage(),
+                "Cart Limit Exceeded",
+                JOptionPane.ERROR_MESSAGE
+        );
+    }
 });
 
         container.add(addToCartButton);
 
         // Play button only if playable
-        if (media instanceof Playable) {
+if (media instanceof Playable) {
 
-            JButton playButton =
-        new JButton("Play");
+    JButton playButton =
+            new JButton("Play");
 
-playButton.addActionListener(e -> {
+    playButton.addActionListener(e -> {
 
-    JOptionPane.showMessageDialog(
-            null,
-            "Playing " + media.getTitle()
-    );
-});
+        try {
 
-            container.add(playButton);
+            Playable playable =
+                    (Playable) media;
+
+            playable.play();
+
+            JOptionPane.showMessageDialog(
+                    null,
+                    "Playing " + media.getTitle()
+            );
+
+        } catch (Exception ex) {
+
+            JOptionPane.showMessageDialog(
+                    null,
+                    ex.getMessage(),
+                    "Player Error",
+                    JOptionPane.ERROR_MESSAGE
+            );
         }
+    });
 
-        add(container);
-    }
+    container.add(playButton);
+}
+
+add(container);
+}
 }
