@@ -47,7 +47,7 @@ public class StoreScreen extends JFrame {
         setJMenuBar(menuBar);
 
         StoreScreenHeader header =
-        new StoreScreenHeader(cart);
+        new StoreScreenHeader(cart, store);
 
         add(header, BorderLayout.NORTH);
 
