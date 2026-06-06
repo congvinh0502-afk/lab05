@@ -1,59 +1,54 @@
 package hust.soict.dsai.aims.screen;
 
 import hust.soict.dsai.aims.cart.Cart;
-import hust.soict.dsai.aims.media.Media;
+import hust.soict.dsai.aims.store.Store;
+
+import javafx.application.Platform;
+import javafx.embed.swing.JFXPanel;
+import javafx.fxml.FXMLLoader;
+import javafx.scene.Parent;
+import javafx.scene.Scene;
 
 import javax.swing.*;
 import java.awt.*;
+import java.io.IOException;
 
 public class CartScreen extends JFrame {
 
     private Cart cart;
+    private Store store;
 
-    public CartScreen(Cart cart) {
+    public CartScreen(Cart cart, Store store) {
 
-        this.cart = cart;
+        super();
+        this.cart  = cart;
+        this.store = store;
 
         setTitle("Cart");
-
-        setSize(800, 600);
-
+        setSize(1024, 768);
         setLocationRelativeTo(null);
-
         setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
 
-        setLayout(new BorderLayout());
-
-        JLabel title = new JLabel(
-                "Current Cart",
-                SwingConstants.CENTER
-        );
-
-        title.setFont(
-                new Font("Arial", Font.BOLD, 30)
-        );
-
-        add(title, BorderLayout.NORTH);
-
-        JPanel center = new JPanel();
-
-        center.setLayout(
-                new GridLayout(0, 1, 10, 10)
-        );
-
-        for (Media media : cart.getItemsOrdered()) {
-
-            JLabel mediaLabel =
-                    new JLabel(media.toString());
-
-            center.add(mediaLabel);
-        }
-
-        JScrollPane scrollPane =
-                new JScrollPane(center);
-
-        add(scrollPane, BorderLayout.CENTER);
+        JFXPanel fxPanel = new JFXPanel();
+        add(fxPanel, BorderLayout.CENTER);
 
         setVisible(true);
+
+        Platform.runLater(() -> {
+            try {
+                FXMLLoader loader = new FXMLLoader(
+                        getClass().getResource("cart.fxml"));
+
+                CartScreenController controller =
+                        new CartScreenController(cart, store, this);
+                loader.setController(controller);
+
+                Parent root = loader.load();
+                fxPanel.setScene(new Scene(root));
+
+            } catch (IOException e) {
+                e.printStackTrace();
+            }
+        });
     }
 }
